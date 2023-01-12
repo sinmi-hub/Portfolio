@@ -2,7 +2,7 @@ This package, Takeout System, simulates a
 takeout system in a restaurant 
 environment. It uses basic Java and 
 Programming  principles and frameworks to 
-create a takeout logic of a customer 
+create a logic of a customer 
 ordering and checking out from a 
 restaurant. This folder, TakeoutSystem 
 contains folders which represents various 
@@ -13,6 +13,6 @@ to test written code.
 
 This project idea was sourced from 
 codeAcademy, and the simulation /logic 
-behind it was written by,,,, 
+behind it was written by...
 
 Yours Truly.
