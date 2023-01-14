@@ -21,9 +21,9 @@ public class Menu {
         menu = new ArrayList<>();// uses arrayList to initialize menu
 
         // create new Food objects and simultaneously adds them to menu
-        menu.add(new Food("pancakes", "breakfast",16));
-        menu.add(new Food("Rice and Steaks", "lunch",32));
-        menu.add(new Food("Potatoes", "dinner",10));
+        menu.add(new Food("Pancakes", "breakfast option",16));
+        menu.add(new Food("Rice and Steaks", "lunch option",32));
+        menu.add(new Food("Potatoes", "dinner option",10));
     }
 
     /**This method adds a new Food object to the current Menu Object. It
@@ -176,13 +176,15 @@ public class Menu {
         for(Food food : menu) {
             /* checks if printMenu is null. i.e. if this is the first Food
              object being printed*/
-            if(printMenu == null) {
+            if(printMenu == null)
                 // creates String Builder object
                 printMenu = new StringBuilder(i + ". " + food.toString());
-            } else {
+
+             else
                 // appends every food object on a new line
-                printMenu.append("\n").append(i).append(". ").append(food.toString());
-            }
+                printMenu.append("\n").append(i).append(". ")
+                                                    .append(food.toString());
+
             i++;
         }
 
