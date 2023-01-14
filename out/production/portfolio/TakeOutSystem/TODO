@@ -1,25 +1,16 @@
-// If there is not enough money, do not start
- simulation
-// if there is not enough money, move
-customer to checkout
-//modify checkout message to check if there
-bought something or not
-//error message when a menu item that is not
-available is chosen
-// could make customer's name final
-// functionality to view cart
-// view the total price of everything in cart
-// remember 3 things necessary for any object
-// use setPrice in PricedItem interface
+
+//error handling for user validation, isntead
+ of exception, just print statement
+
+
+
 . Add, Remove, Search, Traverse - always use
 when applicable
-// if shouldSimulate() cause errors..uncast
-return statement
-// run through simulation all the way to the
-end with money left and try to proceed with
-simulation
+
+
 // if user does not want to order when they
 get to menu option
+//use threading between programs
 //TODO
 setPrice()
 searchDish()
