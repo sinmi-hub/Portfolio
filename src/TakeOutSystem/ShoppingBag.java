@@ -129,4 +129,50 @@ public class ShoppingBag<T extends PricedItem<Integer>>{
     public int numItemsCheckout(){
         return shoppingBag.size();
     }
+
+    /**This method prints a string representation of the current shoppingBag
+     * object. It does this by printing every item currently in the shopping
+     * bag on a new line except for the last item. A count variable is used
+     * to keep track of last item so a new line is not printed after it.
+     *
+     * @return String representation of customer's shopping bag
+     */
+    @Override
+    public String toString() {
+        int count = numItemsCheckout();// current number of items in shoppingBag
+        StringBuilder result = new StringBuilder("Your cart currently contains:\n");
+
+        for(T item: shoppingBag.keySet()){
+            /* if more than 1 item is left to be printed, a new line is
+             printed at the end of the sentence.*/
+            if(count != 1){
+                // checks quantity of item to determine what vocabulary of
+                // quantities to use.
+                if(shoppingBag.get(item) > 1)
+                    result.append(shoppingBag.get(item)).
+                        append(" quantities of ").append(item).append("\n");
+
+                else // plural
+                    result.append(shoppingBag.get(item)).
+                            append(" quantity of ").append(item).append("\n");
+
+                count--;// reduces after an item is printed
+            }
+
+            // does not print newline at the end
+            else{
+                // checks quantity of item to determine what vocabulary of
+                // quantities to use.
+                if(shoppingBag.get(item) > 1)
+                    result.append(shoppingBag.get(item)).
+                            append(" quantities of ").append(item);
+
+                else // plural
+                    result.append(shoppingBag.get(item)).
+                            append(" quantity of ").append(item);
+            }
+        }
+
+        return result.toString();
+    }
 }
