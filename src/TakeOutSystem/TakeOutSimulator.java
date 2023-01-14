@@ -152,44 +152,53 @@ public class TakeOutSimulator{
         /* a loop that will run until customer has no money left to spend or
         if customer decides to check out*/
         while(state){
-
             System.out.println("Your current balance is: $"+customerMoneyLeft);
-            System.out.println();
-            System.out.println("Menu:");
-           /* returns the Food that user chooses after getMenuSelection() is
-             called*/
-            Food chosenFood = getMenuSelection();
 
-            /* Before adding to cart, check to see if customer has enough
-             money for purchase*/
-            // if there is enough money
-            if(customerMoneyLeft >= chosenFood.getPrice()){
-                /* subtract cost of food that user chose from the amount of
-                 money they have*/
-                customerMoneyLeft -= chosenFood.getPrice();
-                cart.addItem(chosenFood);// adds food to cart
-                System.out.println("Added "+chosenFood.getName()+" to cart");
+            // checks if a customer has enough money to buy food
+            if(customerMoneyLeft >= menu.getLowestFoodCost()) {
+                System.out.println("Menu:");
+                /* returns the Food that user chooses after getMenuSelection() is
+                called*/
+                Food chosenFood = getMenuSelection();
+
+                 /* Before adding to cart, check to see if customer has enough
+                money for purchase they chose*/
+                if (customerMoneyLeft >= chosenFood.getPrice()) {
+                    /* subtract cost of food that user chose from the amount of
+                    money they have*/
+                    customerMoneyLeft -= chosenFood.getPrice();
+                    cart.addItem(chosenFood);// adds food to cart
+                    System.out.println("Added " + chosenFood.getName()
+                                    + " to cart");
+                }
+
+                // if user does not have enough money for food they chose
+                else{
+                    System.out.println("You do not have enough money left" +
+                            " for " + chosenFood.getName() + ". " +
+                            "You can choose another item" + " or checkout");
+                }
             }
-
-            // if user does not have enough money for food they chose
-            else if (customerMoneyLeft < chosenFood.getPrice()) {
-                System.out.println("You do not have enough money left for " +
-                       chosenFood.getName()+". You can choose another item" +
-                        " or checkout");
-            }
-
             // if user has no money left to buy food
-            else if (customerMoneyLeft < menu.getLowestFoodCost()) {
+            else {
                System.out.println("You do not have enough money left for any" +
                        " purchase.\nPlease proceed to checkout...");
             }
             System.out.println();
+            int status = isStillOrderingFood();
 
-            state = isStillOrderingFood();// value of state is updated
-
-            if(!state){
+            if(status == 0)// if customer wants to check out
                 checkoutCustomer(cart);// checks out customer
+
+            // if customer wants to view cart
+            else if (status == 2) {
+                System.out.println(cart);
+                System.out.println("Total price of food in cart is $"+
+                        cart.getTotalPrice()+".");
             }
+            System.out.println();
+            // updating current state of program
+            state = status == 1;// customer keeps shopping
         }
     }
 
@@ -233,7 +242,7 @@ public class TakeOutSimulator{
             value = intUserInputRetriever
                     .produceOutputOnIntUserInput(userInput);
         } catch (IllegalArgumentException error){
-            System.out.println("Input needs to be an Integer type");
+            System.out.println("Invalid input");
         }
 
         // output
@@ -265,7 +274,7 @@ public class TakeOutSimulator{
             if(menu.getFood(selection) != null)
                 food = menu.getFood(selection);
 
-            // if index is invalid, then food id not on menu
+            // if index is invalid, then food is not on menu
             else
                 throw new IllegalArgumentException("We do not have any food " +
                         "item with such number on out menu");
@@ -286,26 +295,31 @@ public class TakeOutSimulator{
      * @return True if user is still ordering food
      *          False otherwise (user checking out)
      */
-    public boolean isStillOrderingFood(){
+    public int isStillOrderingFood(){
         // prompt for user
         String userPrompt = """
                 Please choose from the following to proceed:
                 0. Go to checkout
-                1. Continue Shopping""";
+                1. Continue Shopping
+                2. To view order in cart""";
 
         /* Implementing interface to process output based on an input
          parameter,"selection"*/
         UserInputRetriever<?> retrieve = selection -> {
-            boolean status;
+            int status;
 
             // checks if input is 1, then true is returned according to prompt
            if(selection == 1)
-               status = true;
+               status = 1;
 
            /* if false, then this takes user to check out as seen
            in takeOutPrompt()*/
            else if (selection == 0)
-               status = false;
+               status = 0;
+
+           else if(selection ==2){
+               status = 2;
+           }
 
            // if invalid option is chosen
            else
@@ -315,7 +329,7 @@ public class TakeOutSimulator{
            return status;
         };
         // returns result
-         return (boolean) getOutputOnInput(userPrompt, retrieve);
+         return (int) getOutputOnInput(userPrompt, retrieve);
     }
 
     /**This method checks out the customer. This is the exit point of the
@@ -331,7 +345,7 @@ public class TakeOutSimulator{
             throw new IllegalArgumentException("Cannot have an invalid cart");
 
         // checks to see if customer actually ordered any food
-        if(cart.numItemsCheckout() == 0) {
+        if(cart.numItemsCheckout() != 0) {
             System.out.println("Currently processing your payment...");
 
             // gets total cost of every item in customer's cart
