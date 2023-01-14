@@ -5,7 +5,9 @@ package TakeOutSystem;
  * name of the customer and the amount of money that the customer has to
  * spend. These two field help identify the customer in the takeout system.
  * The fields are made private. Getters and setters are created only where
- * they are needed as creating getters and setters reduces privacy
+ * they are needed as creating getters and setters reduces privacy. In this
+ * class, a setter method is not created for customer's name as it is not
+ * needed to be modified.
  *
  */
 public class Customer {
