@@ -51,21 +51,6 @@ public class Food implements PricedItem<Integer>{
         return price;
     }
 
-    /**This method is an implementation of the PricedItem interface which
-     * defines the method setPrice(). This method serves as a setter method
-     * for the Food class and modifies the price of the food by changing it
-     * to parameter, newPrice.
-     *
-     * @param newPrice (new price to change the price of current food object to)
-     */
-    @Override
-    public void setPrice(Integer newPrice) {
-
-        /* checks to make sure price is not negative. Since food cannot cost
-         negative amount of dollars*/
-        if(price >= 0)
-            price = newPrice;// changes price
-    }
 
     // getter method for the name field to be used in another class
     public String getName() {
@@ -74,7 +59,7 @@ public class Food implements PricedItem<Integer>{
 
     @Override
     public String toString() {
-        return "Enjoy " + name + ": " + description+" item"+ "\n\tCost: $" + price;
+        return name+", which is a " +description+". Price is $"+price+".";
     }
 
     // Overriding the equals method to make two Food object equals if they
