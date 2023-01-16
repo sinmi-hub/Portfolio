@@ -59,6 +59,8 @@ public class TakeOutSimulator{
              runs*/
             start = shouldSimulate();
 
+            process(1500);// buffers for 1.5 seconds
+
             /* if start is true. i.e. Customer decides to proceed with
              simulation*/
             if(start){
@@ -152,11 +154,12 @@ public class TakeOutSimulator{
         /* a loop that will run until customer has no money left to spend or
         if customer decides to check out*/
         while(state){
-            System.out.println("Your current balance is: $"+customerMoneyLeft);
-
+            System.out.println("Your current balance is: $"+customerMoneyLeft+".");
+            System.out.println();
+            process(2000);
             // checks if a customer has enough money to buy food
             if(customerMoneyLeft >= menu.getLowestFoodCost()) {
-                System.out.println("Menu:");
+                System.out.println("Our Menu is as follows:");
                 /* returns the Food that user chooses after getMenuSelection() is
                 called*/
                 Food chosenFood = getMenuSelection();
@@ -185,6 +188,7 @@ public class TakeOutSimulator{
                        " purchase.\nPlease proceed to checkout...");
             }
             System.out.println();
+            process(1500);
             int status = isStillOrderingFood();
 
             if(status == 0)// if customer wants to check out
@@ -195,6 +199,7 @@ public class TakeOutSimulator{
                 System.out.println(cart);
                 System.out.println("Total price of food in cart is $"+
                         cart.getTotalPrice()+".");
+                status = isStillOrderingFood();
             }
             System.out.println();
             // updating current state of program
@@ -257,9 +262,8 @@ public class TakeOutSimulator{
      * @return Food that user chooses from menu
      */
     public Food getMenuSelection(){
-        String userPrompt = "\nOur menu items is listed above. Choose what " +
-                "you " +
-                "would like to order: ";
+        String userPrompt = "\nOur menu items is listed above. What " +
+                "you would like to order: ";
 
         // prints the menu for user to choose
        System.out.println(menu.toString());
@@ -298,7 +302,8 @@ public class TakeOutSimulator{
     public int isStillOrderingFood(){
         // prompt for user
         String userPrompt = """
-                Please choose from the following to proceed:
+                Main Menu:
+                Enter corresponding number proceed:
                 0. Go to checkout
                 1. Continue Shopping
                 2. To view order in cart""";
@@ -347,7 +352,7 @@ public class TakeOutSimulator{
         // checks to see if customer actually ordered any food
         if(cart.numItemsCheckout() != 0) {
             System.out.println("Currently processing your payment...");
-
+            process(4000);
             // gets total cost of every item in customer's cart
             int totalCost = cart.getTotalPrice();
 
@@ -363,5 +368,22 @@ public class TakeOutSimulator{
 
         System.out.println("Your current balance is: $"+ customer.getMoney());
         System.out.println("Thanks for choosing Taste of NOLA.\n");
+    }
+
+    /**This method simply causes the main thread to sleep. Calling this
+     * method pauses the main method in driver class, which runs the program
+     * and gives and illusion of the program processing or buffering to get
+     * information or perform an operation. It uses the Thread class to
+     * implement this.
+     *
+     * @param sleepTime (Number of milliseconds to buffer)
+     */
+    public void process(int sleepTime){
+        try{
+            Thread.sleep(sleepTime);
+        }
+        catch (InterruptedException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
