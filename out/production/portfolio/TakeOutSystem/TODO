@@ -1,18 +1,12 @@
-
-//error handling for user validation, isntead
- of exception, just print statement
-
-
-
-. Add, Remove, Search, Traverse - always use
-when applicable
-
-
 // if user does not want to order when they
 get to menu option
-//use threading between programs
+Main menu op
+
+1. To use delay in some part of the programs
+2. To change error handling for user input.
+Instead of throwing an IllegalArgument and
+crashing, ask user to enter another an input.
 //TODO
-setPrice()
 searchDish()
 addDish()
 removeDish()
