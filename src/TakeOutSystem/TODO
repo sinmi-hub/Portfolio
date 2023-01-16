@@ -1,11 +1,9 @@
-// if user does not want to order when they
-get to menu option
 
 1. To use delay in some part of the programs
 2. To change error handling for user input.
 Instead of throwing an IllegalArgument and
 crashing, ask user to enter another an input.
-//TODO
+//TODO -- unused
 searchDish()
 addDish()
 removeDish()
