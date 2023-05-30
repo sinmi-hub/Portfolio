@@ -3,13 +3,13 @@ Author: Sinmi
 Date: 05/29/2023
 */
 
-/*This program  is message generator program. Every time the program is run, it generates a randomized output in message. It either randomly generates based on category such as 'motivational', 'astrology', 'dadJokes', 'jokes', 'christian' if desired category is given, or else it would randomly generate from all 5 categories. The structure of the program is such that the message generator is implemented as an object with methods. Each category is pre-written with messages and is randomly choosen and given back to user */
+/*This program  is message generator program. Every time the program is run, it generates a randomized output in message. It either randomly generates based on category such as 'motivational', 'astrology', 'dadJokes', 'jokes', 'christian' if desired category is given, or else it would randomly generate from all 5 categories. The structure of the program is such that the message generator is implemented as an object with methods. Each category is pre-written with messages and is randomly choosen and given back to user. Each of these category are simulated through arrays and messages in these categories are stored in arrays */
 
 const messages = (username) => {
     let msgObject = {
         _username: username,
 
-        /*Category of possible jokes that could be used */
+        /*Category of possible messages that could be used */
         allCategory : ['motivational', 'astrology', 'dadJokes', 'jokes', 'christian'],
 
         motivational: [
