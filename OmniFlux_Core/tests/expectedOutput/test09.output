@@ -1,0 +1,16 @@
+add      R10 R11
+mul      R14 R14
+mod      R11 R12
+or       R15 R10
+eql      R13 R12
+gt       R12 R14
+ge       R11 R15
+neg      R15
+not      R13
+a80027e8
+08000000
+a3803810
+93c02f10
+9ac03910
+8b560000
+The assertions were all extremely successful!

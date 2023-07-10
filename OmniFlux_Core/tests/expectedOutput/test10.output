@@ -1,0 +1,16 @@
+add      R10 R11
+mul      R14 R14
+mod      R11 R12
+or       R15 R10
+eql      R13 R12
+gt       R12 R14
+ge       R11 R15
+neg      R15
+not      R13
+branch   10216
+syscall
+li       R14 14352
+lw       R15 12048
+sw       R11 14608
+move     R13 R11
+The assertions were all extremely successful!
