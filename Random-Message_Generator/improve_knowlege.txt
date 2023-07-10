@@ -1,4 +1,0 @@
-Current structure of this code is using prewritten messages and randomly choosing.
-As I study more and become better, here are things to do:
-1.) Truly increase randomness by using API calls to AI that can generate this messages randomly
-2.) I could also approach this logic by creating a database of this messages. I could scrape websites for this or find another way to populate database
