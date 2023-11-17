@@ -12,3 +12,5 @@ _Projects include_:
 
 -  Word Count Program: `This program counts the number of words, lines, and characters in the files whose names are given as command-line arguments. It uses C to build a multi-threaded version of a simple word count tool, similar to the Unix wc command. For more details, please refer to the ReadMe_WC file in the Word Count folder.`
 
+- Coffee_Machine: `This program is implemented both in python and java. This simulates real life application of coffee machines and the states they take. This involved a lot of OOP, and the program mostly reflects how electronics generally tend to hangle different operations by switching states. This project was sourced from Hyperskill. Refer to ReadMe_Coffee for more information`
+
